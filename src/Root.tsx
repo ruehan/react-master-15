@@ -1,6 +1,10 @@
 import { Outlet } from "react-router-dom";
-import Header from "./components/Header";
-import { createGlobalStyle } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+import Header from "./pages/Header";
+import { darkTheme, lightTheme } from "./theme/theme";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 // import Character from "./pages/Character";
 
 const GlobalStyle = createGlobalStyle`
@@ -56,13 +60,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
 `
-
 function Root() {
+
+  const isDark = useRecoilValue(isDarkAtom);
+
   return (
     <>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Header />
       <Outlet />
+    </ThemeProvider>
     </>
   );
 }

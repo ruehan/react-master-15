@@ -1,9 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
-import NotFound from "./pages/NotFound";
-import Character from "./components/Character";
-import CharacterDetail from "./components/CharacterDetail";
-import Modal from "./components/Modal";
+import NotFound from "./Error/NotFound";
+import TravelList from "./components/TravelList";
 
 
 const router = createBrowserRouter([
@@ -13,16 +11,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <Character />
+                element: <TravelList />
             },
-            {
-                path: "character/:id",
-                element: <CharacterDetail />
-            },
-            {
-                path: "modal",
-                element: <Modal />
-            }
         ],
         errorElement: <NotFound />
     }
