@@ -58,20 +58,24 @@ const GlobalStyle = createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
+  
+  #root{
+    width: 100%;
+    height: 100vh;
+  }
 
-`
+`;
 function Root() {
+	const isDark = useRecoilValue(isDarkAtom);
 
-  const isDark = useRecoilValue(isDarkAtom);
-
-  return (
-    <>
-    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <GlobalStyle />
-      <Outlet />
-    </ThemeProvider>
-    </>
-  );
+	return (
+		<>
+			<ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+				<GlobalStyle />
+				<Outlet />
+			</ThemeProvider>
+		</>
+	);
 }
 
 export default Root;
